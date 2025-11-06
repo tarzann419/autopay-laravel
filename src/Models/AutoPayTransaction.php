@@ -1,6 +1,6 @@
 <?php
 
-namespace YourVendor\AutoPay\Models;
+namespace DanOgbo\AutoPay\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

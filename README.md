@@ -24,7 +24,7 @@ A Laravel package for processing bulk payments through Interswitch AutoPay XML A
 Install the package via Composer:
 
 ```bash
-composer require yourvendor/autopay-laravel
+composer require tarzann419/autopay-laravel
 ```
 
 Publish the configuration file:
@@ -45,9 +45,11 @@ php artisan migrate
 Add your Interswitch credentials to your `.env` file:
 
 ```env
+# Interswitch AutoPay credentials — get these from your AutoPay dashboard or by contacting AutoPay customer support
+# Switching charge: per-transaction processing fee (in Naira) charged by the payment switch/bank. Set this to the value agreed with Interswitch or your bank; the package will use it when calculating total charges.
 AUTOPAY_CLIENT_ID=your_client_id
 AUTOPAY_CLIENT_SECRET=your_client_secret
-AUTOPAY_TERMINAL_ID=3PSA0001
+AUTOPAY_TERMINAL_ID=XXXXXXXX
 AUTOPAY_SWITCHING_CHARGE=0
 ```
 
@@ -56,7 +58,7 @@ AUTOPAY_SWITCHING_CHARGE=0
 ### Basic Example
 
 ```php
-use YourVendor\AutoPay\Facades\AutoPay;
+use DanOgbo\AutoPay\Facades\AutoPay;
 
 $batchData = [
     'batch_no' => 'BATCH001',
@@ -67,7 +69,7 @@ $batchData = [
 
 $payments = [
     [
-        'employee_no' => 'EMP001',
+        'beneficiary_id' => 'BEN001',
         'beneficiary_name' => 'John Doe',
         'account_number' => '0123456789',
         'bank_code' => '058',
@@ -75,7 +77,7 @@ $payments = [
         'amount' => 150000.00,
     ],
     [
-        'employee_no' => 'EMP002',
+        'beneficiary_id' => 'BEN002',
         'beneficiary_name' => 'Jane Smith',
         'account_number' => '0987654321',
         'bank_code' => '011',
@@ -109,8 +111,8 @@ if ($result->isSuccessful()) {
 ```php
 namespace App\Http\Controllers;
 
-use YourVendor\AutoPay\Facades\AutoPay;
-use YourVendor\AutoPay\Exceptions\AutoPayException;
+use DanOgbo\AutoPay\Facades\AutoPay;
+use DanOgbo\AutoPay\Exceptions\AutoPayException;
 use Illuminate\Http\Request;
 
 class SalaryController extends Controller
@@ -132,7 +134,7 @@ class SalaryController extends Controller
         // Transform to payment format
         $payments = $employees->map(function ($employee) {
             return [
-                'employee_no' => $employee->employee_no,
+                'beneficiary_id' => $employee->employee_no,
                 'beneficiary_name' => $employee->full_name,
                 'account_number' => $employee->account_number,
                 'bank_code' => $employee->bank_code,
@@ -170,7 +172,7 @@ class SalaryController extends Controller
 ### Using the Processor Directly
 
 ```php
-use YourVendor\AutoPay\Services\AutoPayXmlProcessor;
+use DanOgbo\AutoPay\Services\AutoPayXmlProcessor;
 
 $processor = new AutoPayXmlProcessor();
 
@@ -185,7 +187,7 @@ $result = $processor->process(
 ### Query Transactions
 
 ```php
-use YourVendor\AutoPay\Models\AutoPayTransaction;
+use DanOgbo\AutoPay\Models\AutoPayTransaction;
 
 // Get all transactions
 $transactions = AutoPayTransaction::latest()->get();
@@ -211,7 +213,7 @@ Each payment in the `$payments` array should have:
 
 | Field              | Type   | Required | Description                            |
 | ------------------ | ------ | -------- | -------------------------------------- |
-| `employee_no`      | string | Yes      | Employee/Beneficiary reference number  |
+| `beneficiary_id`   | string | Yes      | Unique beneficiary reference/ID        |
 | `beneficiary_name` | string | Yes      | Name of the beneficiary                |
 | `account_number`   | string | Yes      | Bank account number                    |
 | `bank_code`        | string | Yes      | Bank CBN code (e.g., '058' for GTBank) |
@@ -269,7 +271,7 @@ return [
 The package throws `AutoPayException` for errors:
 
 ```php
-use YourVendor\AutoPay\Exceptions\AutoPayException;
+use DanOgbo\AutoPay\Exceptions\AutoPayException;
 
 try {
     $result = AutoPay::processBulkPayment(...);
@@ -313,8 +315,8 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 
 ## Credits
 
--   [Your Name](https://github.com/yourusername)
--   [All Contributors](../../contributors)
+-   [Nanichang Katzing](https://github.com/nanichang)
+-   [Daniel Ogbo](https://github.com/tarzann419)
 
 ## Changelog
 

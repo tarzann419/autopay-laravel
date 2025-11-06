@@ -1,6 +1,6 @@
 <?php
 
-namespace YourVendor\AutoPay;
+namespace DanOgbo\AutoPay;
 
 use Illuminate\Support\ServiceProvider;
 

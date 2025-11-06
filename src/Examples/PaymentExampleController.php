@@ -1,12 +1,12 @@
 <?php
 
-namespace YourVendor\AutoPay\Examples;
+namespace DanOgbo\AutoPay\Examples;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Log;
-use YourVendor\AutoPay\Facades\AutoPay;
-use YourVendor\AutoPay\Exceptions\AutoPayException;
+use DanOgbo\AutoPay\Facades\AutoPay;
+use DanOgbo\AutoPay\Exceptions\AutoPayException;
 
 /**
  * Example controller showing how to use the AutoPay package
@@ -102,7 +102,7 @@ class PaymentExampleController extends Controller
 
         return $employees->map(function ($emp) {
             return [
-                'employee_no' => $emp->employee_no,
+                'beneficiary_id' => $emp->employee_no,
                 'beneficiary_name' => $emp->full_name,
                 'account_number' => $emp->account_number,
                 'bank_code' => $emp->bank_code,
@@ -115,7 +115,7 @@ class PaymentExampleController extends Controller
         // For demonstration purposes, return sample data
         return [
             [
-                'employee_no' => 'EMP001',
+                'beneficiary_id' => 'BEN001',
                 'beneficiary_name' => 'John Doe',
                 'account_number' => '0123456789',
                 'bank_code' => '058',
@@ -123,7 +123,7 @@ class PaymentExampleController extends Controller
                 'amount' => 150000.00,
             ],
             [
-                'employee_no' => 'EMP002',
+                'beneficiary_id' => 'BEN002',
                 'beneficiary_name' => 'Jane Smith',
                 'account_number' => '0987654321',
                 'bank_code' => '011',
@@ -136,7 +136,7 @@ class PaymentExampleController extends Controller
     /**
      * Send success notification email
      *
-     * @param \YourVendor\AutoPay\DTOs\PaymentResult $result
+     * @param \DanOgbo\AutoPay\DTOs\PaymentResult $result
      * @return void
      */
     protected function sendSuccessNotification($result): void

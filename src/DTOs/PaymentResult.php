@@ -1,6 +1,6 @@
 <?php
 
-namespace YourVendor\AutoPay\DTOs;
+namespace DanOgbo\AutoPay\DTOs;
 
 class PaymentResult
 {

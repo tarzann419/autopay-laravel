@@ -66,7 +66,7 @@ packages/autopay-laravel/
 ### Installation (3 commands)
 
 ```bash
-composer require yourvendor/autopay-laravel
+composer require tarzann419/autopay-laravel
 php artisan vendor:publish --tag=autopay-config
 php artisan migrate
 ```
@@ -83,7 +83,7 @@ AUTOPAY_SWITCHING_CHARGE=0
 ### Usage (Simple API)
 
 ```php
-use YourVendor\AutoPay\Facades\AutoPay;
+use DanOgbo\AutoPay\Facades\AutoPay;
 
 $result = AutoPay::processBulkPayment(
     $batchData,      // ['batch_no', 'batch_name', 'month', 'year']
@@ -226,7 +226,7 @@ try {
 
 1. **Update branding**:
 
-    - Change `yourvendor` to your actual vendor name
+    - Change `DanOgbo` to your actual vendor name
     - Update author details in `composer.json`
     - Update namespaces
 
@@ -253,7 +253,7 @@ try {
     }
 ],
 "require": {
-    "yourvendor/autopay-laravel": "@dev"
+    "tarzann419/autopay-laravel": "@dev"
 }
 ```
 
@@ -277,7 +277,7 @@ try {
 You now have a professional, production-ready Laravel package that takes your specific payment processing logic and makes it available to any Laravel application with just:
 
 ```bash
-composer require yourvendor/autopay-laravel
+composer require tarzann419/autopay-laravel
 ```
 
 The package handles all the complexity while providing a clean, simple API.

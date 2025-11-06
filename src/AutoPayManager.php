@@ -1,8 +1,8 @@
 <?php
 
-namespace YourVendor\AutoPay;
+namespace DanOgbo\AutoPay;
 
-use YourVendor\AutoPay\Services\AutoPayXmlProcessor;
+use DanOgbo\AutoPay\Services\AutoPayXmlProcessor;
 
 class AutoPayManager
 {
@@ -20,7 +20,7 @@ class AutoPayManager
      * @param array $payments
      * @param string $sourceAccount
      * @param string $narration
-     * @return \YourVendor\AutoPay\DTOs\PaymentResult
+     * @return \DanOgbo\AutoPay\DTOs\PaymentResult
      */
     public function processBulkPayment(
         array $batchData,
@@ -36,7 +36,7 @@ class AutoPayManager
     /**
      * Get a payment processor instance
      *
-     * @return \YourVendor\AutoPay\Services\AutoPayXmlProcessor
+     * @return \DanOgbo\AutoPay\Services\AutoPayXmlProcessor
      */
     public function processor()
     {

@@ -5,7 +5,7 @@ This guide will help you get started with the AutoPay Laravel package in just a 
 ## Step 1: Install the Package
 
 ```bash
-composer require yourvendor/autopay-laravel
+composer require tarzann419/autopay-laravel
 ```
 
 ## Step 2: Publish Configuration
@@ -23,7 +23,7 @@ Add your Interswitch credentials:
 ```env
 AUTOPAY_CLIENT_ID=your_client_id_here
 AUTOPAY_CLIENT_SECRET=your_client_secret_here
-AUTOPAY_TERMINAL_ID=3PSA0001
+AUTOPAY_TERMINAL_ID=XXXXXXXX
 AUTOPAY_SWITCHING_CHARGE=0
 ```
 
@@ -35,8 +35,8 @@ AUTOPAY_SWITCHING_CHARGE=0
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use YourVendor\AutoPay\Facades\AutoPay;
-use YourVendor\AutoPay\Exceptions\AutoPayException;
+use DanOgbo\AutoPay\Facades\AutoPay;
+use DanOgbo\AutoPay\Exceptions\AutoPayException;
 
 class PaymentController extends Controller
 {
@@ -53,7 +53,7 @@ class PaymentController extends Controller
         // Your payments (from database or wherever)
         $payments = [
             [
-                'employee_no' => 'EMP001',
+                'beneficiary_id' => 'BEN001',
                 'beneficiary_name' => 'John Doe',
                 'account_number' => '0123456789',
                 'bank_code' => '058', // GTBank

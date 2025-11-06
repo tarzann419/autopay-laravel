@@ -75,7 +75,7 @@ public function processPayment(Request $request) { ... }
 
 ```php
 $batchData = ['batch_no' => '...', 'batch_name' => '...', ...];
-$payments = [['employee_no' => '...', 'amount' => 150000, ...]];
+$payments = [['beneficiary_id' => '...', 'amount' => 150000, ...]];
 ```
 
 ### 3. Call Package
@@ -116,7 +116,7 @@ if ($result->isSuccessful()) {
 
 ```
 Input Payment:
-├─ Employee: John Doe
+├─ Beneficiary: John Doe
 ├─ Amount: ₦150,000
 ├─ Account: 0123456789
 └─ Bank: GTBank (058)

@@ -1,6 +1,6 @@
 <?php
 
-namespace YourVendor\AutoPay\Exceptions;
+namespace DanOgbo\AutoPay\Exceptions;
 
 use Exception;
 

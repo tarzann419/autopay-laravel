@@ -1,14 +1,14 @@
 <?php
 
-namespace YourVendor\AutoPay\Facades;
+namespace DanOgbo\AutoPay\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static \YourVendor\AutoPay\DTOs\PaymentResult processBulkPayment(array $batchData, array $payments, string $sourceAccount, string $narration)
- * @method static \YourVendor\AutoPay\Services\AutoPayXmlProcessor processor()
+ * @method static \DanOgbo\AutoPay\DTOs\PaymentResult processBulkPayment(array $batchData, array $payments, string $sourceAccount, string $narration)
+ * @method static \DanOgbo\AutoPay\Services\AutoPayXmlProcessor processor()
  *
- * @see \YourVendor\AutoPay\AutoPayManager
+ * @see \DanOgbo\AutoPay\AutoPayManager
  */
 class AutoPay extends Facade
 {

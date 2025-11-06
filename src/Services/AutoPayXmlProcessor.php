@@ -1,12 +1,12 @@
 <?php
 
-namespace YourVendor\AutoPay\Services;
+namespace DanOgbo\AutoPay\Services;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
-use YourVendor\AutoPay\DTOs\PaymentResult;
-use YourVendor\AutoPay\Exceptions\AutoPayException;
-use YourVendor\AutoPay\Models\AutoPayTransaction;
+use DanOgbo\AutoPay\DTOs\PaymentResult;
+use DanOgbo\AutoPay\Exceptions\AutoPayException;
+use DanOgbo\AutoPay\Models\AutoPayTransaction;
 
 class AutoPayXmlProcessor
 {
@@ -213,13 +213,13 @@ class AutoPayXmlProcessor
             $accountType = $this->getAccountTypeCode($payment['account_type'] ?? 'SAVINGS');
 
             $paymentRef = uniqid();
-            $employeeNo = $payment['employee_no'] ?? $paymentRef;
+            $beneficiaryId = $payment['beneficiary_id'] ?? $paymentRef;
             $beneficiaryName = preg_replace("/[^a-zA-Z\s]/", " ", $payment['beneficiary_name']);
 
             $paymentsBatchXml .= '<aut:Payment>
                 <aut:PaymentRef>' . $paymentRef . '</aut:PaymentRef>
                 <aut:PaymentType>DC</aut:PaymentType>
-                <aut:BeneficiaryCode>' . $employeeNo . '</aut:BeneficiaryCode>
+                <aut:BeneficiaryCode>' . $beneficiaryId . '</aut:BeneficiaryCode>
                 <aut:Narration>' . htmlspecialchars($narration) . '</aut:Narration>
                 <aut:Amount>' . $amountInKobo . '</aut:Amount>
                 <aut:CurrencyCode>NGN</aut:CurrencyCode>
@@ -230,7 +230,7 @@ class AutoPayXmlProcessor
             </aut:Payment>';
 
             $amount += $amountInKobo;
-            $allBeneficiaryCode .= $employeeNo;
+            $allBeneficiaryCode .= $beneficiaryId;
             $totalEmployees++;
         }
 
