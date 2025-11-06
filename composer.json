@@ -1,0 +1,53 @@
+{
+    "name": "tarzann419/autopay-laravel",
+    "description": "Laravel package for Interswitch AutoPay XML bulk payment processing",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Daniel Ogbo",
+            "email": "danogbo0@gmail.com"
+        },
+        {
+            "name": "Nanichang Katzing",
+            "email": "nanipaul68@gmail.com"
+        }
+    ],
+    "homepage": "https://github.com/tarzann419/autopay-laravel",
+    "require": {
+        "php": "^8.0|^8.1|^8.2",
+        "illuminate/support": "^9.0|^10.0|^11.0",
+        "illuminate/database": "^9.0|^10.0|^11.0",
+        "ext-curl": "*",
+        "ext-xml": "*"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^7.0|^8.0",
+        "phpunit/phpunit": "^9.0|^10.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "DanOgbo\\AutoPay\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "DanOgbo\\AutoPay\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "DanOgbo\\AutoPay\\AutoPayServiceProvider"
+            ],
+            "aliases": {
+                "AutoPay": "DanOgbo\\AutoPay\\Facades\\AutoPay"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
